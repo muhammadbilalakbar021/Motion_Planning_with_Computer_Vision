@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 from matplotlib import pyplot as plt
 
 img = cv2.imread('/media/bilal/Work_Space/Robotics_Path_Planning/openCV/test.jpeg',0)
@@ -11,17 +10,17 @@ ret,thresh5 = cv2.threshold(img,150,255,cv2.THRESH_TOZERO_INV)
 titles = ['Original Image','BINARY','BINARY_INV','TRUNC','TOZERO','TOZERO_INV']
 images = [img, thresh1, thresh2, thresh3, thresh4, thresh5]
 
-for i in range(4):
-    plt.subplot(2,2,i+1),plt.imshow(images[i],'gray')
-    plt.title(titles[i])
-    plt.xticks([]),plt.yticks([])
+# for i in range(4):
+#     plt.subplot(2,2,i+1),plt.imshow(images[i],'gray')
+#     plt.title(titles[i])
+#     plt.xticks([]),plt.yticks([])
 
-plt.show()
+#plt.show()
 
 img = cv2.medianBlur(img,5)
 
 ret,AdaptiveThresholding1 = cv2.threshold(img,50,255,cv2.THRESH_BINARY)
-AdaptiveThresholding2= cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,11,2)
+AdaptiveThresholding2= cv2.adaptiveThreshold(img,200,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,11,2)
 AdaptiveThresholding3 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
 
 
@@ -30,7 +29,7 @@ titles = ['Original Image', 'Global Thresholding (v = 127)',
             'Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding']
 images = [img, AdaptiveThresholding1, AdaptiveThresholding2, AdaptiveThresholding3]
 
-for i in range(4):
+for i in range(1,2):
     plt.subplot(2,2,i+1),plt.imshow(images[i],'gray')
     plt.title(titles[i])
     plt.xticks([]),plt.yticks([])
@@ -40,7 +39,7 @@ plt.show()
 img = cv2.imread('/media/bilal/Work_Space/Robotics_Path_Planning/openCV/test.jpeg',0)
 
 # global thresholding
-ret1,th1 = cv2.threshold(img,50,255,cv2.THRESH_BINARY)
+ret1,th1 = cv2.threshold(img,50,127,cv2.THRESH_BINARY)
 # Otsu's thresholding
 ret2,th2 = cv2.threshold(img,10,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
 # Otsu's thresholding after Gaussian filtering
@@ -55,7 +54,7 @@ titles = ['Original Noisy Image','Histogram','Global Thresholding (v=127)',
           'Original Noisy Image','Histogram',"Otsu's Thresholding",
           'Gaussian filtered Image','Histogram',"Otsu's Thresholding"]
 
-for i in range(3):
+for i in range(0,1):
     plt.subplot(3,3,i*3+1),plt.imshow(images[i*3],'gray')
     plt.title(titles[i*3]), plt.xticks([]), plt.yticks([])
     plt.subplot(3,3,i*3+2),plt.hist(images[i*3].ravel(),256)
