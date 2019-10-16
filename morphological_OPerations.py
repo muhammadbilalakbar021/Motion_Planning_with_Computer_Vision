@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 currentDirecory = os.getcwd()
 print(currentDirecory)
 
-img = cv2.imread("/media/bilal/Work_Space/Robotics_Path_Planning/openCV/test.jpeg", 0)
+img = cv2.imread("/media/bilal/Work_Space/Robotics_Path_Planning/openCV/Configuration_Space/Test1.jpg", 0)
 # kernel = np.ones((5,5),np.uint8)
 
 kernel1 = np.array([[1, 1, 1],
@@ -30,10 +30,10 @@ triangle = numpy.array([[0, 0], [200, 0], [0, 300]])
 #triangle1= numpy.array([[102, 0], [0, 110], [300, 102]])
 color = [255, 255, 255]
 imgRemoving=cv2.fillConvexPoly(dilation1, triangle, color)
-#imgRemoving=cv2.fillConvexPoly(dilation1, triangle, color)
 
 
-cv2.imshow("Removing Noise", imgRemoving)
+
+cv2.imshow("Removing Noise", dilation)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
